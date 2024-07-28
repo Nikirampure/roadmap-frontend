@@ -1,13 +1,291 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #111111;
+  color: #e0e0e0;
+  font-family: "Roboto", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.node-card {
+  width: 320px; /* Increased width for more content options */
+  min-height: 200px; /* Increased minimum height for richer content */
+  background: #1a1a1a; /* Darker background with a hint of blue */
+  border-radius: 4px; /* Even sleeker rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 24px rgba(0, 0, 0, 0.1); /* Dual shadows for depth */
+  padding: 24px; /* Maintained padding for clarity */
+  display: flex; /* Flexbox layout for customization */
+  flex-direction: column; /* Vertical stacking */
+
+  /* Content area with subtle background gradient */
+  .content {
+    flex: 1; /* Flex grows to fill remaining space */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+    padding: 16px; /* Inner padding within content area */
+    border-radius: 4px; /* Inherited rounded corners for a cohesive look */
+    color: #e0e0e0; /* Light text color */
+    transition: all 0.2s ease; /* Smooth transitions */
+  }
+}
+
+/* Optional: Hover effect with color shift and accent */
+.node-card:hover .content {
+  background: linear-gradient(to bottom, rgba(0, 0, 255, 0.1), transparent);
+  /* Add an accent color (blue) on hover for a touch of vibrancy */
+}
+
+.draggable-node {
+  width: 100px;
+  min-height: 80px;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(
+    45deg,
+    #2e2e2e,
+    #2e2e2e 25%,
+    #333333 25%,
+    #333333 50%,
+    #2e2e2e 50%,
+    #2e2e2e 75%,
+    #333333 75%,
+    #333333
+  );
+  color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.node-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.node-label {
+  font-weight: bold;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  cursor: text;
+}
+
+.node-input-container {
+  margin-bottom: 10px;
+}
+
+.node-input-container label {
+  color: #bb86fc;
+}
+
+.node-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #333;
+  color: #e0e0e0;
+  resize: none;
+  transition: border 0.3s ease;
+}
+
+.node-textarea:focus {
+  border-color: #bb86fc;
+  outline: none;
+}
+
+.draggable-node {
+  width: 100px;
+  min-height: 80px;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #3c3c3c, #575757);
+  color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.draggable-node:hover {
+  background-color: #575757;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.toolbar h1 {
+  font-size: 24px;
+  color: #bb86fc;
+}
+
+.reactflow-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #1e1e1e;
+}
+
+.node-title-input {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  padding: 8px;
+  outline: none;
+}
+
+.node-title-input::placeholder {
+  color: #aaa;
+}
+
+.node-title-input:focus {
+  border-bottom: 2px solid #bb86fc;
+}
+
+.node-textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: transparent;
+  color: #e0e0e0;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  min-height: 100px;
+}
+
+.node-textarea:focus {
+  border-color: #bb86fc;
+  outline: none;
+}
+
+.node-textarea::placeholder {
+  color: #777;
+}
+.toolbar {
+  background-color: #121212;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.chat-history {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40%;
+  max-height: 300px !important;
+  overflow-y: auto;
+}
+
+.chat-history::-webkit-scrollbar {
+  width: 12px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+  background: #2e2e2e;
+  border-radius: 10px;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #2e2e2e;
+}
+
+.chat-history::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker thumb color on hover */
+}
+
+.chat-item-new {
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #979797;
+  transition: transform 1s ease;
+  position: fixed;
+}
+
+.chat-item-new:hover {
+  color: #ffffff;
+}
+
+.chat-item {
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.chat-item:hover {
+  background-color: #333;
+}
+
+.chat-item.active {
+  background-color: #2c2c2c;
+  color: white;
+  border-color: #404040;
+}
+
+.chat-item.active:hover {
+  background-color: #3e3e3e;
+}
+
+.user-profile {
+  padding: 10px;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.user-profile:hover {
+  background-color: #333;
+}
+
+.user-name {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
