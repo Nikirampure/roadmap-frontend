@@ -1,0 +1,107 @@
+.node-card {
+  width: 320px;
+  min-height: 200px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 16px 24px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.node-card .content {
+  flex: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+  padding: 16px;
+  border-radius: 4px;
+  color: #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.node-card:hover .content {
+  background: linear-gradient(to bottom, rgba(0, 0, 255, 0.1), transparent);
+}
+
+.node-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.node-label {
+  font-weight: bold;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  cursor: text;
+}
+
+.node-input-container {
+  margin-bottom: 10px;
+}
+
+.node-input-container label {
+  color: #bb86fc;
+}
+
+.node-textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: transparent;
+  color: #e0e0e0;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  min-height: 100px;
+}
+
+.node-textarea:focus {
+  border-color: #bb86fc;
+  outline: none;
+}
+
+.node-textarea::placeholder {
+  color: #777;
+}
+
+.reactflow-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #1e1e1e;
+}
+
+.node-title-input {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  padding: 8px;
+  outline: none;
+}
+
+.node-title-input::placeholder {
+  color: #aaa;
+}
+
+.node-title-input:focus {
+  border-bottom: 2px solid #bb86fc;
+}
+
+@media (max-width: 768px) {
+  .node-card {
+    width: 170px;
+    height: 80px;
+    padding: 10px;
+  }
+
+  .node-title-input {
+    font-size: 10px;
+  }
+
+  .node-textarea {
+    font-size: 9px;
+  }
+}

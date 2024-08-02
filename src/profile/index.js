@@ -1,6 +1,7 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Modal, Button } from "react-bootstrap";
+import "./index.css";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();

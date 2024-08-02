@@ -14,6 +14,7 @@ import {
 import "reactflow/dist/style.css";
 import { Button } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
+import { DraggableNode } from "./draggableNode";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -31,8 +32,8 @@ const selector = (state) => ({
   onConnect: state.onConnect,
   selectedTitleIndex: state.selectedTitleIndex,
   setSelectedTitleIndex: state.setSelectedTitleIndex,
-  newTitle: state.newTitle, // Include newTitle from store
-  setNewTitle: state.setNewTitle, // Include setNewTitle from store
+  newTitle: state.newTitle,
+  setNewTitle: state.setNewTitle,
 });
 
 const titles = [
@@ -56,8 +57,8 @@ export const PipelineUI = () => {
     onConnect,
     selectedTitleIndex,
     setSelectedTitleIndex,
-    newTitle, // Destructure newTitle from store
-    setNewTitle, // Destructure setNewTitle from store
+    newTitle,
+    setNewTitle,
   } = useStore(selector, shallow);
 
   const getInitNodeData = (nodeID, type) => {
@@ -160,6 +161,10 @@ export const PipelineUI = () => {
           {selectedTitleIndex != null && <Controls />}
           {selectedTitleIndex != null && <MiniMap />}
         </ReactFlow>
+
+        {selectedTitleIndex != null && (
+          <DraggableNode type="RoadMap" label="Drag and Drop" />
+        )}
 
         {selectedTitleIndex === null && (
           <div
@@ -288,47 +293,18 @@ export const PipelineUI = () => {
 
         {/* Modal backdrop */}
         {showModal && !isAuthenticated && (
-          <div
-            style={{
-              position: "fixed",
-              top: "0",
-              left: "0",
-              right: "0",
-              bottom: "0",
-            }}
-          >
-            {" "}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "20px",
-                right: "20px",
-                padding: "20px",
-                borderRadius: "8px",
-                backgroundColor: "#333", // Change to a solid color like "#333"
-                color: "white",
-                width: "15%",
-              }}
-            >
+          <div className="modal-overlay">
+            <div className="modal-content">
               <h5>Welcome to Roadmap Builder</h5>
               <p>Sign in and create a project to save it for later!</p>
               <Button
-                className="btn"
-                style={{
-                  marginRight: "10px",
-                  width: "90%",
-                  color: "whitesmoke",
-                }}
+                className="btn-sign-in"
                 variant="info"
                 onClick={() => loginWithRedirect()}
               >
                 Sign In
               </Button>
-              <button
-                className="btn btn-secondary mt-2"
-                style={{ marginRight: "10px", width: "90%" }}
-                onClick={closeModal}
-              >
+              <button className="btn btn-secondary mt-2" onClick={closeModal}>
                 Close
               </button>
             </div>

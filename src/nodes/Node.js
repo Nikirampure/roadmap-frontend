@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Handle, Position } from "reactflow";
 import { Card } from "react-bootstrap";
 import { useStore } from "../store";
+import "./index.css";
 
 const Node = ({ id, label, content, inputs, outputs }) => {
   const [title, setTitle] = useState(content.title);

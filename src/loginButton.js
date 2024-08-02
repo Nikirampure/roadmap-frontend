@@ -7,7 +7,7 @@ const LoginButton = () => {
 
   return (
     <Button
-      style={{ width: "90%", backgroundColor:"#0dcaf0" }}
+      style={{ width: "90%", backgroundColor: "#0dcaf0" }}
       onClick={() => loginWithRedirect()}
     >
       Log In
