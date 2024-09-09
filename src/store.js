@@ -166,7 +166,7 @@ export const useStore = create((set, get) => ({
 
     try {
       const response = await axios.post(
-        "https://roadmap-backend-gm1q.onrender.com/roadmap/save",
+        "http://localhost:8000/roadmap/save",
         {
           userEmail,
           projectTitle: finalTitle,
@@ -184,7 +184,7 @@ export const useStore = create((set, get) => ({
   fetchRoadmapFromBackend: async (userEmail, projectTitle) => {
     try {
       const response = await axios.get(
-        `https://roadmap-backend-gm1q.onrender.com/roadmap/fetch/${userEmail}/${projectTitle}`,
+        `http://localhost:8000/roadmap/fetch/${userEmail}/${projectTitle}`,
       );
       const { nodes, edges } = response.data;
       set({ nodes, edges });
@@ -197,7 +197,7 @@ export const useStore = create((set, get) => ({
   fetchProjectTitles: async (userEmail) => {
     try {
       const response = await axios.get(
-        `https://roadmap-backend-gm1q.onrender.com/projects/${userEmail}`,
+        `http://localhost:8000/projects/${userEmail}`,
       );
       const projectTitles = response.data;
       console.log("Project titles fetched:", projectTitles);
