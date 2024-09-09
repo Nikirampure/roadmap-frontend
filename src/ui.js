@@ -188,7 +188,7 @@ export const PipelineUI = () => {
                 fontFamily: "'Roboto', sans-serif",
               }}
             >
-              Welcome to Mindmap Builder
+              Welcome to Roadmap Builder
             </h2>
             <div
               style={{
